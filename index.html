@@ -284,6 +284,149 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://liaozhifei.github.io/heblog/2017/07/02/Byte/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liaozhifei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/heblog/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不积跬步, 无以至千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/heblog/2017/07/02/Byte/" itemprop="url">Byte</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-02T13:53:05+08:00">
+                2017-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、基础数据类型和它们的包装类：<br>    0、前言：<br>        注意，因为JVM的存在，并且在不同的操作系统(如window、linux、unix、macos等)都有其实现，<br>        所以，才导致了java语言和其他的基于JVM的语言均具有跨平台的特性，<br>        因此，java不会同C语言那样，在不同的平台上(操作系统上)，各基础数据类型所占的字节数不同<br>        在C语言中，可以使用sizeof来查看数据类型占用的字节数，但是在java语言中，没有提供类似方法</p>
+<pre><code>1、byte：字节
+    大小：1个字节(8位)
+    说明：8位中，第一位表示的时数字的正负符号，所以1字节的取值范围是-2^7 到 2^7-1 --&gt; -128 到 127
+    (重要)解释:因为符号位会占用第一位，所以负数同一以1开头，比如-1的8位二进制表示为10000001，相反的1的8位二进制表示为00000001
+                推理可得，1字节可表示的最小负数是11111111，即8位都是1，同理，由于第一位必须用来表示这个二进制数是正数，所以第一个
+                只能是0，也就是说8位二进制所能表示的最大整数是01111111，等于2^7-1
+    (重要)经测试:分别在IDEA、Eclipse上键入一下代码：
+                line1    byte b1 = 128;
+                line2    byte b2 = 127;
+                line3    byte b3 = -128;
+                line4    byte b4 = -129;
+                其中，line1所示的b1，赋值超过了byte所能表示的最大正数，编译通不过，抛出编译错误
+                line4所示的b4，赋值超过了byte所能表示的最小负数，一样的，编译通不过，抛出了编译错误
+2、Byte：byte的包装类
+    此处不解释包装类概念，弄清楚了再补上，简单理解为基础数据类型的扩展
+    (重要)构建：
+        陷阱：有2种方式构建Byte类型的对象，new Byte(byte) 和 Byte.valueOf(byte)，再构建Byte对象时，请注意，以下这种构建方式将抛出编译错误
+                    line1    Byte bb1 = new Byte(1);
+                    line2    Byte bb2 = Byte.valueOf(1);
+                首先，byte完全能够接受数字1，因为这个数子在区间[-128, 127]，但是，值得注意的是，line1和line2所表示的数字1的类型均默认为int，
+                而Byte类的构造函数和valueOf方法要接受的参数都是byte类型的，
+                因此，line1和line2将通不过编译，
+                虽然知识点很小，但却是一个不折不扣的惯性思维陷阱
+        编译异常&amp;运行时异常：首先第一段代码
+                    line1   byte b1 = 128;
+                    line2   Byte bb1 = new Byte(b1);
+                经过第1节的认识，我们已经知道line1的代码是不可能通过编译的，虽然line2的代码不会去检查传入参数，因此也不会像line1那样，在编译时
+                就抛出异常，别急，这一小节的内容跟这个构造Byte对象有关，是运行时异常
+                接着看下面这段代码
+                    line4   byte b2 = 127;
+                    line5   byte b3 = 1;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://liaozhifei.github.io/heblog/2017/07/01/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -440,7 +583,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/heblog/archives/">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -448,6 +591,15 @@
 
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
